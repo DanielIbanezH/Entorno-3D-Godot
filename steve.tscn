@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4m3akfrhro2s"]
+
+[ext_resource type="Script" path="res://steve.gd" id="1_3tiih"]
+[ext_resource type="ArrayMesh" uid="uid://bbg7wlevq0wxp" path="res://Assets/Models/among us.obj" id="2_ha7o6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w31if"]
+size = Vector3(1, 1.14935, 0.762268)
+
+[node name="Steve" type="CharacterBody3D"]
+script = ExtResource("1_3tiih")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0054186, 0, 0, 0, 0.0054186, 0, 0, 0, 0.0054186, 0, -0.676919, 0)
+mesh = ExtResource("2_ha7o6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.089447, -0.0323792)
+shape = SubResource("BoxShape3D_w31if")
+
+[node name="Camera_Controller" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera_Target" type="Node3D" parent="Camera_Controller"]
+transform = Transform3D(0.957092, 0, 0.289784, -0.106714, 0.929725, 0.352453, -0.269419, -0.368254, 0.889832, 1.81846, 3.2597, 9.13251)
+
+[node name="Camera3D" type="Camera3D" parent="Camera_Controller/Camera_Target"]
+transform = Transform3D(1, 0, 0, 0, 0.991372, -0.13108, 0, 0.13108, 0.991372, 0, -0.00240016, -2.95066)
+current = true

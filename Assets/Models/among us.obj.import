@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbg7wlevq0wxp"
+path="res://.godot/imported/among us.obj-711b7487769c99621e688cc0f9363ea9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/among us.obj-711b7487769c99621e688cc0f9363ea9.mesh"]
+
+source_file="res://Assets/Models/among us.obj"
+dest_files=["res://.godot/imported/among us.obj-711b7487769c99621e688cc0f9363ea9.mesh", "res://.godot/imported/among us.obj-711b7487769c99621e688cc0f9363ea9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

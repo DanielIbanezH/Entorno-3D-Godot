@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqen127ybs47d"]
+
+[ext_resource type="PackedScene" uid="uid://cf1np3axcng58" path="res://block.tscn" id="1_h0ha5"]
+[ext_resource type="PackedScene" uid="uid://c4m3akfrhro2s" path="res://steve.tscn" id="2_eut7v"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_ivr6c"]
+[ext_resource type="Texture2D" uid="uid://b5aooabvotquv" path="res://Assets/Models/salto.png" id="5_di84u"]
+[ext_resource type="PackedScene" uid="uid://dd6wil3kneae2" path="res://coin.tscn" id="5_vmwub"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xgh6"]
+albedo_color = Color(0.74902, 0.266667, 0.247059, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_xewl5"]
+material = SubResource("StandardMaterial3D_8xgh6")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rv43o"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_584q4"]
+sky_top_color = Color(0.0784314, 0.313726, 0.905882, 1)
+sky_horizon_color = Color(0.592157, 0.368627, 0.960784, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.592157, 0.368627, 0.960784, 1)
+ground_curve = 0.0672
+
+[sub_resource type="Sky" id="Sky_6itw3"]
+sky_material = SubResource("ProceduralSkyMaterial_584q4")
+
+[sub_resource type="Environment" id="Environment_xt8cn"]
+background_mode = 2
+sky = SubResource("Sky_6itw3")
+ambient_light_color = Color(0.882353, 0.882353, 0.882353, 1)
+ambient_light_sky_contribution = 0.75
+ssr_enabled = true
+ssao_enabled = true
+
+[node name="Level1" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Controles" type="Node2D" parent="Control"]
+
+[node name="HUD" type="CanvasLayer" parent="Control/Controles"]
+
+[node name="Control" type="Control" parent="Control/Controles/HUD"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -251.0
+offset_right = -29.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control/Controles/HUD/Control"]
+texture_normal = ExtResource("5_di84u")
+action = "ui_accept"
+
+[node name="Virtual Joystick" parent="Control/Controles/HUD" instance=ExtResource("4_ivr6c")]
+
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.46317, 0, 0, 0, 1.46317, 0, 0, 0, 1.46317, 0, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_xewl5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.062, 0, 0)
+shape = SubResource("BoxShape3D_rv43o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984159, 0.0375446, 0.17327, -0.177291, 0.208414, 0.961838, 0, -0.97732, 0.211768, 0, 7.25114, 0)
+shadow_enabled = true
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block1" parent="Blocks" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(0.877163, 0.480193, 0, -0.480193, 0.877163, 0, 0, 0, 1, -0.677558, 4.1372, 1.05458)
+
+[node name="Block1" parent="Blocks/Block1" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(0.877163, 0.480193, 0, -0.480193, 0.877163, 0, 0, 0, 1, -1.07149, 3.92154, 2.04815)
+
+[node name="Block1" parent="Blocks/Block1/Block1" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(0.877164, 0.480193, 0, -0.480193, 0.877164, 0, 0, 0, 1, 0.563165, -4.36921, -0.707496)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(-0.145136, 0.667713, 0.730134, -0.402676, -0.713929, 0.57285, 0.903763, -0.210866, 0.372489, 1.18148, 4.55746, -3.67546)
+
+[node name="Block2" parent="Blocks/Block2" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(-0.243446, 2.25369, 1.90679, -0.675434, -2.40968, 1.49603, 1.51594, -0.711723, 0.972778, 2.55351, -5.91652, -0.893156)
+
+[node name="Block3" parent="Blocks" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(0.739309, 0.668887, -0.0775431, 0.548914, -0.66536, -0.505954, -0.39002, 0.331492, -0.859068, -0.659134, 6.62016, -3.32365)
+
+[node name="Block4" parent="Blocks" instance=ExtResource("1_h0ha5")]
+transform = Transform3D(-0.00576531, 0.675501, 0.737336, -0.311375, -0.701904, 0.640606, 0.95027, -0.225895, 0.214381, 0.619023, 10.1161, -0.748123)
+
+[node name="Steve" parent="." instance=ExtResource("2_eut7v")]
+transform = Transform3D(1, 0, 0, 0, 0.999993, 0.00366518, 0, -0.00366518, 0.999993, 3, 1, 0)
+
+[node name="Coin1" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25819, 0.862422, -5.42035)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xt8cn")
+
+[node name="Coin2" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0.00015708, 0, -0.00015708, 1, 5.74149, 0.94304, -2.98217)
+
+[node name="Coin3" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.63823, 0.839477, 6.01357)
+
+[node name="Coin4" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(0.999558, 4.67093e-06, -0.029736, 0, 1, 0.00015708, 0.029736, -0.000157011, 0.999558, -6.29306, 0.757672, 5.0254)
+
+[node name="Coin5" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24626, 0.711065, -5.49998)
+
+[node name="Coin6" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0.00015708, 0, -0.00015708, 1, 5.0807, 0.821362, 2.78948)
+
+[node name="Coin7" parent="." instance=ExtResource("5_vmwub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29612, 1.15793, 5.78346)
